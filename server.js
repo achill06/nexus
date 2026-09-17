@@ -19,6 +19,7 @@ app.get("/", (req, res) => {
   res.json({
     status: "ok",
     service: "Nexus Backend",
+    message: "Welcome to the Nexus Backend",
   });
 });
 
