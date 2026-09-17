@@ -2,12 +2,10 @@ const { pool } = require('./db-connection.js');
 
 async function addToShortlist(userId, listingId, matchScore, justification) {
   const result = await pool.query(
-    `INSERT INTO shortlist (user_id, structured_listing_id, match_score, justification)
+    `INSERT INTO shortlist (user_id,structured_listing_id,match_score,justification)
      VALUES ($1, $2, $3, $4)
-     ON CONFLICT (user_id, structured_listing_id) DO UPDATE SET
-       match_score = EXCLUDED.match_score,
-       justification = EXCLUDED.justification,
-       saved_at = NOW()
+     ON CONFLICT (user_id, structured_listing_id)
+     DO UPDATE SET match_score = EXCLUDED.match_score, justification = EXCLUDED.justification, saved_at = NOW()
      RETURNING *`,
     [userId, listingId, matchScore, justification]
   );
@@ -26,9 +24,12 @@ async function getShortlist(userId) {
   const result = await pool.query(
     `SELECT s.id AS shortlist_id, s.match_score, s.justification, s.saved_at,
             l.id AS listing_id, l.title, l.company, l.location, l.remote_ok,
-            l.stipend, l.required_skills, l.experience_level, l.deadline
+            l.stipend, l.required_skills, l.experience_level, l.deadline,
+            COALESCE(r.raw_fields->>'apply_url',r.raw_fields->>'job_url',r.raw_fields->>'url',r.source_url) 
+            AS apply_url
      FROM shortlist s
      JOIN structured_listings l ON l.id = s.structured_listing_id
+     LEFT JOIN raw_listings r ON r.id = l.raw_listing_id
      WHERE s.user_id = $1
      ORDER BY s.saved_at DESC`,
     [userId]
