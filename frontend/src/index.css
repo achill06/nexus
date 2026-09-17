@@ -478,6 +478,35 @@ input:focus {
   gap: 2px;
 }
 
+.sidebar-github-link {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 18px 8px 10px;
+  padding: 6px 10px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: color 0.18s ease, transform 0.18s ease;
+}
+
+.sidebar-github-link img {
+  width: 16px;
+  height: 16px;
+  filter: invert(1);
+  opacity: 0.65;
+  transition: opacity 0.18s ease;
+}
+
+.sidebar-github-link:hover {
+  color: var(--paper);
+  transform: translateX(2px);
+}
+
+.sidebar-github-link:hover img {
+  opacity: 1;
+}
+
 .sidebar-link {
   padding: 0.6em 0.8em;
   border-radius: 5px;
@@ -965,6 +994,11 @@ input:focus {
   .sidebar-logout {
     margin-top: 0;
     margin-left: auto;
+  }
+
+  .sidebar-github-link {
+    grid-column: 1 / -1;
+    margin: 4px 0 0;
   }
 
   .main-content {

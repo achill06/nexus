@@ -59,6 +59,17 @@ export default function Layout() {
           ))}
         </nav>
 
+        <a
+          className="sidebar-github-link"
+          href="https://github.com/achill06/nexus"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="View Nexus on GitHub"
+        >
+          <img src="/github-mark.svg" alt="" aria-hidden="true" />
+          <span>View on GitHub</span>
+        </a>
+
         <button
           type="button"
           className="btn btn-danger sidebar-logout"
