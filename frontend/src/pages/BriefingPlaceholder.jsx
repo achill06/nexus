@@ -9,8 +9,7 @@ export default function BriefingPlaceholder() {
         <span className="coming-soon-badge">Coming soon</span>
         <p>
           Video briefing generation isn't wired up yet. The backend's async video job pipeline
-          hasn't been built. This page is a placeholder so the nav is complete; nothing here is
-          functional.
+          hasn't been built. It will be available in a future release. In the meantime, you can still view your top matches in the <a href="/matches">Matches</a> page.
         </p>
       </div>
     </div>

@@ -9,7 +9,7 @@ export default function AgentPlaceholder() {
         <span className="coming-soon-badge">Coming soon</span>
         <p>
           The chat agent isn't wired up yet. The backend's tool-calling endpoints haven't been
-          built. This page is a placeholder so the nav is complete; nothing here is functional.
+          built.In the meantime, you can still view your top matches in the <a href="/matches">Matches</a> page.
         </p>
       </div>
     </div>
