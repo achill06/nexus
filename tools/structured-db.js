@@ -39,7 +39,7 @@ async function saveExtractionResult(rawListingId, extractionResult) {
     } else {
       const isInfraFailure = extractionResult.error.startsWith('LLM call failed:');
       if (isInfraFailure) {
-        console.warn(`Listing ${rawListingId}: infra failure, leaving as 'pending' for retry — ${extractionResult.error}`);
+        console.warn(`Listing ${rawListingId}: infra failure, leaving as 'pending' for retry: ${extractionResult.error}`);
       } else {
         await client.query(
           `UPDATE raw_listings SET extraction_status = 'failed' WHERE id = $1`,

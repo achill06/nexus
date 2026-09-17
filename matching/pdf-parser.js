@@ -21,7 +21,7 @@ async function extractTextFromPDF(buffer) {
 
   if (cleaned.length < MIN_TEXT_LENGTH) {
     throw new Error(
-      'pdf-parser: extracted text is too short — this PDF may be scanned/image-based, which is not supported'
+      'pdf-parser: extracted text is too short, this PDF may be scanned/image-based, which is not supported'
     );
   }
 
