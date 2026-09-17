@@ -51,7 +51,7 @@ Create a `.env` file in the project root:
 DATABASE_URL=postgresql://nexus_user:<password>@localhost:5432/nexus
 GITHUB_TOKEN=<personal access token, no scopes needed, used only to raise the read rate limit on public repo content>
 GEMINI_API_KEY=<your Gemini API key>
-GROQ_API_KEY=<your Groq API key, used for LLM extraction>
+GROQ_API_KEY=<your Groq API key, used for LLM extraction - optional, we can use same gemini key>
 JWT_SECRET=<random 32-byte hex string>
 PORT=3000
 FRONTEND_URL=<your deployed frontend URL, for CORS - Omit or use * for local dev>
