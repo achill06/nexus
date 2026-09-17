@@ -15,6 +15,13 @@ app.use('/auth', authRoutes);
 app.use('/matching',matchingRoutes);
 app.use('/shortlist', shortlistRoutes);
 
+app.get("/", (req, res) => {
+  res.json({
+    status: "ok",
+    service: "Nexus Backend",
+  });
+});
+
 app.get('/me', authMiddleware, async (req, res, next) => {
   try{
     const user = await getUserById(req.userId);
@@ -31,13 +38,6 @@ app.use((req, res) => {
 app.use((err, req, res, next) => {
   console.error(err);
   res.status(500).json({ message: 'Internal Server Error' });
-});
-
-app.get("/", (req, res) => {
-  res.json({
-    status: "ok",
-    service: "Nexus Backend",
-  });
 });
 
 const PORT = process.env.PORT|| 3000;
