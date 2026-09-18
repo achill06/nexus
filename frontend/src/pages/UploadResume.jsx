@@ -168,9 +168,9 @@ export default function UploadResume() {
               <span className="file-drop-label">
                 {file ? file.name : 'Drop your resume here'}
               </span>
-              <span className="file-drop-hint">
-                {file ? 'Ready to upload' : 'PDF files up to 10MB'}
-              </span>
+              {file && (
+                <span className="file-drop-hint">Ready to upload</span>
+              )}
               {!file && (
                 <>
                   <span className="file-drop-support">
