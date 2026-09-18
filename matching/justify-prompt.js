@@ -1,4 +1,4 @@
-const { callLLM } = require('../extraction/llm-client');
+const { callOpenRouter } = require('./openrouter-client');
 
 const MAX_RESUME_CHARS = 4000;
 
@@ -32,7 +32,7 @@ start directly with the reasoning.`;
 
 async function generateJustification(resumeText, listing) {
   const prompt = buildJustificationPrompt(resumeText, listing);
-  const rawText = await callLLM(prompt);
+  const rawText = await callOpenRouter(prompt);
   return rawText.replace(/\s+/g, ' ').trim();
 }
 

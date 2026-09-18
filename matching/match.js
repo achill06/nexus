@@ -3,6 +3,7 @@ const { embedText } = require('./embeddings');
 const { saveResumeEmbedding, findTopMatches } = require('../tools/embeddings-db');
 const { replaceResume, getLatestResume } = require('../tools/resumes-db');
 const { generateJustification } = require('./justify-prompt');
+const { getCachedJustification, saveCachedJustification } = require('../tools/match-cache-db');
 
 async function processResumeUpload(userId, pdfBuffer) {
   const resumeText = await extractTextFromPDF(pdfBuffer);
@@ -27,12 +28,15 @@ async function getMatchesForUser(userId, limit = 10) {
 
   const matches = [];
   for (const listing of listings) {
-    let justification;
-    try {
-      justification = await generateJustification(resume.resumeData, listing);
-    } catch (error) {
-      console.error(`match: justification failed for listing ${listing.id}: ${error.message}`);
-      justification = null;
+    let justification = await getCachedJustification(resume.id, listing.id);
+    if (justification === undefined) {
+      try {
+        justification = await generateJustification(resume.resumeData, listing);
+      } catch (error) {
+        console.error(`match: justification failed for listing ${listing.id}: ${error.message}`);
+        justification = null;
+      }
+      await saveCachedJustification(resume.id, listing.id, justification);
     }
     matches.push({ ...listing, justification });
   }

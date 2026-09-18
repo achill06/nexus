@@ -61,6 +61,16 @@ async function initDatabase() {
         UNIQUE (user_id, structured_listing_id)
         );
     `;
+    const createMatchJustificationsQuery = `
+        CREATE TABLE IF NOT EXISTS match_justifications (
+        resume_id INTEGER NOT NULL REFERENCES resumes(id) ON DELETE CASCADE,
+        structured_listing_id INTEGER NOT NULL REFERENCES structured_listings(id) ON DELETE CASCADE,
+        justification TEXT,
+        created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+        PRIMARY KEY (resume_id, structured_listing_id)
+    );
+  `;
+
     try{
         console.log('Initializing database...');
         await pool.query('CREATE EXTENSION IF NOT EXISTS vector;');
@@ -75,6 +85,8 @@ async function initDatabase() {
         console.log('Resumes table initialized successfully.');
         await pool.query(createShortlistTableQuery);
         console.log('Shortlist table initialized successfully.');
+        await pool.query(createMatchJustificationsQuery);
+        console.log('Match justifications table initialized successfully.');
         console.log('Database initialized successfully.');
     }
     catch (error) {
