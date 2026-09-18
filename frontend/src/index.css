@@ -830,7 +830,7 @@ input:focus {
 
 .listing-score-match {
   color: var(--match);
-  background: rgba(52, 211, 153, 0.12);
+  background: transparent;
   border: 1px solid rgba(52, 211, 153, 0.38);
   border-radius: 999px;
   font-size: 0.76rem;

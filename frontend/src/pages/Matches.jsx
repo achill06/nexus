@@ -50,6 +50,7 @@ export default function Matches() {
           const cachedMatches = JSON.parse(cached);
           if (
             Array.isArray(cachedMatches) &&
+            cachedMatches.every((listing) => listing.justification?.trim()) &&
             requestId === matchRequestRef.current
           ) {
             setMatches(cachedMatches);

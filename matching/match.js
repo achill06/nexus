@@ -29,14 +29,16 @@ async function getMatchesForUser(userId, limit = 10) {
   const matches = [];
   for (const listing of listings) {
     let justification = await getCachedJustification(resume.id, listing.id);
-    if (justification === undefined) {
+    if (!justification?.trim()) {
       try {
         justification = await generateJustification(resume.resumeData, listing);
       } catch (error) {
         console.error(`match: justification failed for listing ${listing.id}: ${error.message}`);
         justification = null;
       }
-      await saveCachedJustification(resume.id, listing.id, justification);
+      if (justification) {
+        await saveCachedJustification(resume.id, listing.id, justification);
+      }
     }
     matches.push({ ...listing, justification });
   }
