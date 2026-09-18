@@ -11,6 +11,8 @@ const NAV_ITEMS = [
 
 export default function Layout() {
   const { username, logout } = useAuth();
+  const displayName = username || 'User';
+  const userInitial = displayName.charAt(0).toUpperCase();
 
   return (
     <div className="app-shell">
@@ -36,14 +38,19 @@ export default function Layout() {
         </div>
 
         <div className="sidebar-user" aria-label="Signed-in user">
-          <span className="sidebar-user-status" aria-hidden="true" />
+          <span className="sidebar-user-avatar" aria-hidden="true">
+            {userInitial}
+          </span>
           <span className="sidebar-user-details">
             <span className="sidebar-user-greeting">
-              Hi {username || 'User'}
+              Hi {displayName}
             </span>
+            <span className="sidebar-user-workspace">Personal workspace</span>
           </span>
+          <span className="sidebar-user-chevron" aria-hidden="true" />
         </div>
 
+        <p className="sidebar-section-label">Workspace</p>
         <nav className="sidebar-nav">
           {NAV_ITEMS.map((item) => (
             <NavLink
