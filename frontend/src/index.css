@@ -16,6 +16,7 @@
   --signal: #ffffff;
   --signal-ink: #000000;
   --match: #34d399;
+  --violet: #a371f7;
   --danger: #e0685a;
 
   --font-display: 'Geist', sans-serif;
@@ -829,7 +830,7 @@ input:focus {
 
 .listing-score-match {
   color: var(--match);
-  background: transparent;
+  background: rgba(52, 211, 153, 0.12);
   border: 1px solid rgba(52, 211, 153, 0.38);
   border-radius: 999px;
   font-size: 0.76rem;
@@ -886,9 +887,9 @@ input:focus {
 
 .tag {
   font-size: 0.78rem;
-  color: var(--muted);
-  background: var(--panel-raised);
-  border: 1px solid var(--line);
+  color: var(--violet);
+  background: rgba(163, 113, 247, 0.08);
+  border: 1px solid rgba(163, 113, 247, 0.78);
   padding: 0.25em 0.6em;
   border-radius: 5px;
 }
