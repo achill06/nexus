@@ -169,8 +169,16 @@ export default function UploadResume() {
                 {file ? file.name : 'Drop your resume here'}
               </span>
               <span className="file-drop-hint">
-                {file ? 'Ready to upload' : 'or click to browse your files'}
+                {file ? 'Ready to upload' : 'PDF files up to 10MB'}
               </span>
+              {!file && (
+                <>
+                  <span className="file-drop-support">
+                    We use your resume to find better job matches.
+                  </span>
+                  <span className="file-drop-cta">Choose PDF</span>
+                </>
+              )}
             </span>
           </label>
 

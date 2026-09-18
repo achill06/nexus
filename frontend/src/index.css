@@ -475,7 +475,7 @@ input:focus {
 .sidebar-user-greeting {
   overflow: hidden;
   color: var(--paper);
-  font-size: 1rem;
+  font-size: 2rem;
   font-weight: 500;
   letter-spacing: -0.01em;
   text-overflow: ellipsis;
@@ -706,6 +706,7 @@ input:focus {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   gap: 16px;
   min-height: 220px;
   border: 1px dashed #666666;
@@ -722,13 +723,13 @@ input:focus {
 }
 
 .file-drop:focus-visible {
-  outline: 2px solid #ffffff;
+  outline: 2px solid #facc15;
   outline-offset: 3px;
 }
 
 .file-drop-active {
   background: var(--panel-raised);
-  border-color: #ffffff;
+  border-color: #facc15;
   border-style: solid;
 }
 
@@ -756,7 +757,8 @@ input:focus {
   place-items: center;
   border: 1px solid var(--line);
   border-radius: 5px;
-  color: var(--paper);
+  border-color: rgba(250, 204, 21, 0.55);
+  color: #facc15;
   font-size: 1.5rem;
   line-height: 1;
 }
@@ -764,6 +766,7 @@ input:focus {
 .file-drop-content {
   display: flex;
   align-items: center;
+  width: 100%;
   min-width: 0;
   flex-direction: column;
   gap: 4px;
@@ -773,6 +776,32 @@ input:focus {
 .file-drop-hint {
   color: var(--muted);
   font-size: 0.84rem;
+}
+
+.file-drop-support {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.file-drop-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  margin-top: 10px;
+  padding: 0.5em 0.85em;
+  border: 1px solid rgba(250, 204, 21, 0.7);
+  border-radius: 5px;
+  color: #facc15;
+  font-size: 0.84rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.file-drop:hover .file-drop-cta {
+  background: #facc15;
+  color: #000000;
 }
 
 .upload-panel {
